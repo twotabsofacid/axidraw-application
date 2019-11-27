@@ -1,5 +1,6 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain, shell} = require('electron');
+const { exec } = require('child_process');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -61,7 +62,18 @@ ipcMain.on('exit', (event, arg) => {
 		mainWindow = null;
 		return false;
 	}
-})
+});
+
+// Run the axidraw
 ipcMain.on('run-axidraw', (event, arg) => {
-	console.log('we should run this mother fucker');
+	let command = `axicli ${arg.filename} --speed_pendown ${arg.speed_pendown} --accel ${arg.accel}`;
+	console.log(command);
+	exec(`ls -la`, (err, stdout, stderr) => {
+		if (err) {
+			console.log(`an error occured: ${err}`);
+		} else {
+			console.log(`stdout: ${stdout}`);
+			console.log(`stderr: ${stderr}`);
+		}
+	});
 });

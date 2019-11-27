@@ -6,6 +6,7 @@ const {ipcRenderer} = require('electron');
 class Renderer {
 	constructor() {
 		this.addListeners();
+		this.runAxidraw();
 	}
 	addListeners() {
 		let ranges = [].slice.call(document.querySelectorAll('.input-range'));
@@ -15,6 +16,13 @@ class Renderer {
 				document.getElementById(e.target.getAttribute('name')).innerText = val;
 			});
 		}
+	}
+	runAxidraw() {
+		ipcRenderer.sendSync('run-axidraw', {
+			filename: "somethig_cool.png",
+			speed_pendown: 90,
+			accel: 20
+		});
 	}
 }
 

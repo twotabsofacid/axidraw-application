@@ -9,13 +9,14 @@
 	<div class="container">
 		<h1>Hello world!</h1>
 		<div class="input-group">
-			<input type="range" name="speedPendownRange" class="input-range" min="0" max="100" step="1" value="50">
-			<span id="speedPendownRange">50</span>
+			<input type="range" name="speedPendownRange" class="input-range" min="1" max="99" step="1" value="50">
+			<span id="speedPendownRange" data-cli="--speed_pendown">50</span>
 		</div>
 		<div class="input-group">
-			<input type="range" name="accelerationRange" class="input-range" min="0" max="100" step="1" value="50">
-			<span id="accelerationRange">50</span>
+			<input type="range" name="accelerationRange" class="input-range" min="1" max="99" step="1" value="50">
+			<span id="accelerationRange" data-cli="--accel">50</span>
 		</div>
+	</div>
 	<script src="js/app.js"></script>
 </body>
 </html>

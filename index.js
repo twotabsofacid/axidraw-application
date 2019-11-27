@@ -19,10 +19,8 @@ function createWindow () {
 	// and load the index.html of the app.
 	mainWindow.loadFile('public/index.html');
 
-
-
 	// Open the DevTools.
-	// mainWindow.webContents.openDevTools()
+	mainWindow.webContents.openDevTools()
 
 	// Emitted when the window is closed.
 	mainWindow.on('closed', function () {
@@ -68,10 +66,17 @@ ipcMain.on('exit', (event, arg) => {
 ipcMain.on('run-axidraw', (event, arg) => {
 	let command = `axicli ${arg.filename} --speed_pendown ${arg.speed_pendown} --accel ${arg.accel}`;
 	console.log(command);
-	exec(`ls -la`, (err, stdout, stderr) => {
+	exec(command, (err, stdout, stderr) => {
 		if (err) {
+			mainWindow.send('err', {
+				"error": err
+			});
 			console.log(`an error occured: ${err}`);
 		} else {
+			mainWindow.send('err', {
+				"stdout": stdout,
+				"stderr": stderr
+			});
 			console.log(`stdout: ${stdout}`);
 			console.log(`stderr: ${stderr}`);
 		}

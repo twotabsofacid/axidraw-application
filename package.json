@@ -1,0 +1,18 @@
+{
+  "name": "axidraw-application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "css": "node-sass public/scss/main.scss public/css/main.css --output-style compressed",
+    "watch:css": "onchange 'public/scss/**/*.scss' -- npm run css"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^7.1.2",
+    "node-sass": "^4.13.0",
+    "onchange": "^6.1.0"
+  }
+}

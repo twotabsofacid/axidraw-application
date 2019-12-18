@@ -38,9 +38,15 @@ class Renderer {
 		// ipc
 		ipcRenderer.on('err', (event, data) => {
 			console.log(data);
+			alert(`ERROR, COMMAND FAILED: ${data.error.cmd}`);
 		});
 		ipcRenderer.on('std', (event, data) => {
 			console.log(data);
+			if (data.stdout) {
+				alert(`OUTPUT: ${data.stdout}`);
+			} else {
+				alert(`ERROR: ${data.stderr}`);
+			}
 		});
 	}
 	selectFile() {

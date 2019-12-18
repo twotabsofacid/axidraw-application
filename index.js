@@ -73,7 +73,7 @@ ipcMain.on('run-axidraw', (event, arg) => {
 			});
 			console.log(`an error occured: ${err}`);
 		} else {
-			mainWindow.send('err', {
+			mainWindow.send('std', {
 				"stdout": stdout,
 				"stderr": stderr
 			});
